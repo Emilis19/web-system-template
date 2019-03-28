@@ -1,8 +1,7 @@
-# WEB system
-- [ ] Replace "WEB system" with your system name
+# Book library system
 
 ## Description
-- [ ] Provide WEB system description in few sentences - its purpose, users, etc.
+A simple web using Openlibrary public api to fetch data and display various results!
 
 ## Entity definition
 - [ ] Define the entity ("object" that will be manipulated) of WEB system
