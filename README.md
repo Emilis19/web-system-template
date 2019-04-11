@@ -27,19 +27,19 @@ A simple web using Openlibrary public api to fetch data and display various resu
 
 ## API definition
 - POST /api/search/{string}
-        - 400 : Invalid input.
+         400 : Invalid input.
  - GET /api/search/books
-        - 404 : Results not found.
+         404 : Results not found.
  - GET /api/list
-        - 404 : Result not found.
+         404 : Result not found.
  - GET /api/books/{bibkey}
-        - 400 : Invalid inout.
-        - 404 : Result not found.
+         400 : Invalid input.
+         404 : Result not found.
   - DELETE api/list/{id}
-        - 400 : Invalid inout.
-        - 401 : No authorization.
+         400 : Invalid inout.
+         401 : No authorization.
   - POST /api/list/{id}
-        - 401 : No authorization
+         401 : No authorization
 
 ## UI definition
 The view is going to be based on displaying a single book. There's going to be a search bar and the found results
