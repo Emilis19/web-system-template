@@ -6,40 +6,41 @@ A simple web using Openlibrary public api to fetch data and display various resu
 ## Entity definition
 - Books
     - bib_key : string
-    - title : string
+    - title : string, min: 1, max: 12000
 - Authors
-    - name : string
+    - name : string, min: 1, max: 100
 - Subject
-    - name : string
+    - name : string, min: 1, max: 50
 - Publishers
-    - name : string
+    - name : string, min: 1, max: 100
 - Publish_place
-    - name : string
+    - name : string, min: 1, max: 100
 - Publish_date
-    - date : string
+    - date : string, YYYY:MM:DD
 - Links
-    - url : string
-    - title : string (Author's website)
+    - url : string, url
+    - title : string (Author's website), url
 - Cover
-    - medium : string
+    - medium : string, url
 - Number_of_pages
-    - number : int
+    - number : int, min: 1, max: 14000 
 
 ## API definition
 - POST /api/search/{string}
     - 400 : Invalid input.
 - GET /api/search/books
-    - 404 : Results not found.
-- GET /api/list
-    - 404 : Result not found.
+    - 400 : Results not found.
+- GET /api/list/{id}
+    - 400 : Result not found.
+    - 400 : No authorization.
 - GET /api/books/{bibkey}
     - 400 : Invalid input.
-    - 404 : Result not found.
-- DELETE api/list/{id}
+    - 400 : Result not found.
+- DELETE api/list/{id}/{bibkey}
     - 400 : Invalid input.
-    - 401 : No authorization.
-- POST /api/list/{id}
-    - 401 : No authorization
+    - 400 : No authorization.
+- POST /api/list/{id}/{bibkey}
+    - 400 : No authorization
 
 ## UI definition
 The view is going to be based on displaying a single book. There's going to be a search bar and the found results
