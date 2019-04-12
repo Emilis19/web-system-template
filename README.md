@@ -1,7 +1,7 @@
-# Book library system
+# Books library system
 
 ## Description
-A simple web using Openlibrary public api to fetch data and display various results!
+A simple web using Openlibrary public api to fetch data, create lists and display various search results!
 
 ## Entity definition
 - Books
@@ -32,6 +32,10 @@ A simple web using Openlibrary public api to fetch data and display various resu
     - 400 : Results not found.
 - GET /api/list/{id}
     - 400 : Result not found.
+    - 400 : No authorization.
+- GET /api/list/{id}/{category}/{sort}
+    - 400 : Result not found.
+    - 400 : invalid input.
     - 400 : No authorization.
 - GET /api/books/{bibkey}
     - 400 : Invalid input.
