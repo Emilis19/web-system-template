@@ -23,7 +23,7 @@ A simple web using Openlibrary public api to fetch data, create lists and displa
 - GET /api/user/books?category={category}&sort={sort} - get books by user
     - 400 : Result not found.
     - 400 : No authorization.
-- GET /api/books/{bibkey} - get book by its ID
+- GET /api/books?bibkeys={bibkey} - get book by its ID
     - 400 : Invalid input.
     - 400 : Result not found.
 - DELETE api/user/books/{bibkey} - deletes book from a list by its ID
