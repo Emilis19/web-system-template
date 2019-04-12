@@ -26,10 +26,9 @@ A simple web using Openlibrary public api to fetch data, create lists and displa
     - number : int, min: 1, max: 14000 
 
 ## API definition
-- POST /api/search/{string}
+- GET /api/search/{string}
     - 400 : Invalid input.
-- GET /api/search/books
-    - 400 : Results not found.
+    - 400 : Result not found.
 - GET /api/list/{id}
     - 400 : Result not found.
     - 400 : No authorization.
@@ -45,6 +44,7 @@ A simple web using Openlibrary public api to fetch data, create lists and displa
     - 400 : No authorization.
 - POST /api/list/{id}/{bibkey}
     - 400 : No authorization
+    - 400 : Validation error
 
 ## UI definition
 The view is going to be based on displaying a single book. There's going to be a search bar and the found results
