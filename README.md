@@ -5,7 +5,7 @@ A simple web using Openlibrary public api to fetch data, create lists and displa
 
 ## Entity definition
 - Books
-    - bib_key : string
+    - bib_key : string, min: 10, max: 50
     - title : string, min: 1, max: 12000
 - Authors
     - name : string, min: 1, max: 100
