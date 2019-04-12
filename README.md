@@ -12,7 +12,6 @@ A simple web using Openlibrary public api to fetch data, create lists and displa
     - publisher_name : string, min: 1, max: 100
     - publisher_place : string, min: 1, max: 100
     - publish_date : string, YYYY:MM:DD
-    - url : string, url
     - authors_site : string, url
     - cover_medium : string, url
     - number_pages : int, min: 1, max: 14000
