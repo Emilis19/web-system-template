@@ -6,6 +6,6 @@ export default class Page extends React.Component {
   }
 
   render() {
-    return <div>Template</div>;
+    return <div>Hello world</div>;
   }
 }
