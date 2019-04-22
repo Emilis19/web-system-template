@@ -38,6 +38,10 @@ export default class App extends React.Component {
 
   search(){
     let query = this.state.query;
+    if(query == ''){
+      alert('input is empty, please write something!')
+    }
+    else{
     const BASE_URL = "https://www.googleapis.com/books/v1/volumes?q=" + query;
     fetch(BASE_URL, {method:"GET"})
     .then(response =>  response.json())
@@ -49,6 +53,7 @@ export default class App extends React.Component {
 
     })
     console.log("veikia mygtukas" , this.state.query);
+  }
   }
   handleChange(event){
     this.setState({
