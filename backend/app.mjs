@@ -11,8 +11,11 @@ const app = express();
 const filePath = fileURLToPath(import.meta.url);
 const dirName = filePath.substr(0, filePath.length - 8);
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.static(path.join(dirName, '..', 'frontend', 'dist')));
+//const apiRoutes = require('../frontend/src/components/A')
+
+
 
 app.listen(port, (error) => {
   if (error) {

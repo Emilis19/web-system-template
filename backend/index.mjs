@@ -1,2 +1,1 @@
-import app from './app.mjs'
-
+import './services/bookService.mjs';

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 const style = {
     book: {
         display: 'inline-block',
@@ -31,26 +32,50 @@ const style = {
     
     }
 }
-
+const url = "/api/book"
 export default class Gallery extends React.Component{
+    constructor(props){
+        super(props);
+        this.click.bind(this);
+    }
+    click(item){
+
+        fetch(url, {method: "POST",
+                    body: JSON.stringify(item),
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                }
+        )
+        .then(function (response) {
+            console.log(response.status);
+            return response.json();  
+        } )
+    .then(function(responseValue){
+        console.log(responseValue)
+    })}
     render(){
         return (
             <div>
             {
-                this.props.items.map((item , i) => {
+                this.props.items.map((item) => {
                     let {title, imageLinks , infoLink} = item.volumeInfo
                     return (
+                        <div>
                         <a href ={infoLink}
                         target = "_blank"
-                        key={i} style={style.book}>
+                        key={item.id} style={style.book}>
                         <img 
                         src ={imageLinks !== undefined? imageLinks.thumbnail : ''} 
                         alt = "book image"
                         style={style.bookImage}
                         />
                         <div style={style.titleText}>{title }</div>
-
+                        
                         </a>
+                        <div><Button variant="primary" value= "add" onClick={() => {this.click(item)}}>Add to favorites</Button></div>
+                        </div>
+              
                         
                     );
                 })

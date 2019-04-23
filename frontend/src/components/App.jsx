@@ -6,6 +6,7 @@ import Glyphicon from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 //require('../index.css');
 import Gallery from './Gallery.jsx';
+import BookList from './BookList.jsx';
  
 const style = {
   Global: {
@@ -20,7 +21,7 @@ export default class App extends React.Component {
     super(props);
     this.state={
       query : '',
-      items : []
+      items : [],
 
     };
     this.search=this.search.bind(this);
@@ -62,20 +63,19 @@ export default class App extends React.Component {
   }
   render() {
     return (
-     <div style={style.Global}>
-     <h2>Book search</h2>
-     <FormGroup>
-     <InputGroup>
-     <FormControl type="text" placeholder="Book title or author" onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
-     <InputGroup onClick={this.search}>
-     <Button variant="outline-dark"><i className="glyphicon glyphicon-search"></i></Button>
-     </InputGroup>
-     </InputGroup>
-     
-     
-     </FormGroup>
-     <Gallery items={this.state.items} />
-     </div>
+      <div style={style.Global}>
+      <h2>Book search</h2>
+      <FormGroup>
+      <InputGroup>
+      <FormControl type="text" placeholder="Book title or author" onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
+      <InputGroup onClick={this.search}>
+      <Button variant="outline-dark"><i className="glyphicon glyphicon-search"></i></Button>
+      </InputGroup>
+      </InputGroup>
+      </FormGroup>
+ 
+      <Gallery items={this.state.items} />
+      </div>
       );
   }
 }
