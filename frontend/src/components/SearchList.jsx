@@ -2,7 +2,6 @@ import React from 'react';
 import FormGroup from 'react-bootstrap/FormGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Glyphicon from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 //require('../index.css');
 import Gallery from './Gallery.jsx';
