@@ -6,3 +6,5 @@ export const insert = (book) => fetch('/api/book', {
         },
   }).then(response => response.json())
 
+  
+

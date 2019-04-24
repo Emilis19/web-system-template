@@ -19,6 +19,7 @@ app.use(express.static(path.join(dirName, '..', 'frontend', 'dist')));
 
 app.listen(port, (error) => {
   if (error) {
+    console.log("hahha loser..");
     console.error(error);
     return;
   }

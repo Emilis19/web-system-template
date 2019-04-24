@@ -16,3 +16,6 @@ app.post("/api/book", (req, res) => {
     res.setHeader("Content-Type", 'application/json')
     res.status(200).send(JSON.stringify(books))
 })
+app.get("/api/books", (req, res) => {
+    res.send(books);
+});

@@ -6,7 +6,6 @@ import Glyphicon from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 //require('../index.css');
 import Gallery from './Gallery.jsx';
-import BookList from './BookList.jsx';
  
 const style = {
   Global: {
@@ -16,12 +15,13 @@ const style = {
 }
 
 
-export default class App extends React.Component {
+export default class SearchList extends React.Component {
   constructor(props){
     super(props);
     this.state={
       query : '',
       items : [],
+      state: 'search'
 
     };
     this.search=this.search.bind(this);
@@ -61,9 +61,12 @@ export default class App extends React.Component {
       query: event.target.value
     })
   }
+
+
   render() {
     return (
       <div style={style.Global}>
+
       <h2>Book search</h2>
       <FormGroup>
       <InputGroup>
