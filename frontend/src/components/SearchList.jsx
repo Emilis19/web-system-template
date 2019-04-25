@@ -5,6 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 //require('../index.css');
 import Gallery from './Gallery.jsx';
+import { searchBooks } from '../models/bookModel.js';
  
 const style = {
   Global: {
@@ -42,9 +43,7 @@ export default class SearchList extends React.Component {
       alert('input is empty, please write something!')
     }
     else{
-    const BASE_URL = "https://www.googleapis.com/books/v1/volumes?q=" + query;
-    fetch(BASE_URL, {method:"GET"})
-    .then(response =>  response.json())
+    searchBooks(query)
     .then(json => {
       let {items} = json;
       this.setState({

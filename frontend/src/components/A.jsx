@@ -2,7 +2,6 @@ import React from 'react';
 import SearchList from './SearchList';
 import BookList from './BookList';
 import TabState from './TabState';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class A extends React.Component{
  constructor (props){

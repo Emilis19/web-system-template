@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import {getBooks, deleteBook} from '../models/bookModel';
 //import PropTypes from 'prop-types';
 const style = {
     book: {
@@ -43,14 +44,8 @@ export default class BookList extends React.Component{
         this.onclick = this.onclick.bind(this);
     }
     
-   /* getBooks = () => fetch('/api/books')
-    .then(response => response.json());*/
-
     componentDidMount() {
-        fetch('/api/books', {
-            method: 'GET',
-        })
-        .then(results => results.json())
+        getBooks()
         .then(json => {
             this.setState({ books : json })
         })
@@ -58,20 +53,13 @@ export default class BookList extends React.Component{
     }
 
     onclick(id){
-        fetch('/api/book/'+ id, {
-            method: 'DELETE',
-        })
-        .then(results => results.json())
+        deleteBook(id)
         .then(() => {
-            return fetch('/api/books', {
-                method: 'GET',
+            return getBooks()
             })
-            .then(results => results.json())
             .then(json => {
                 this.setState({ books : json })
             })
-            .catch(function(error) {console.log(error)});
-        })
         .catch(function(error) {console.log(error)});
     }
 

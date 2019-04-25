@@ -6,5 +6,18 @@ export const insert = (book) => fetch('/api/book', {
         },
   }).then(response => response.json())
 
-  
+export const getBooks = () => fetch('/api/books')
+.then(response => response.json());
 
+export const deleteBook = (id) => fetch(`/api/book/${id}`,
+    {
+        method: 'DELETE',
+    })
+.then(response => response.json());
+
+const BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="
+export const searchBooks = (query) => fetch(BASE_URL + query, 
+        {
+            method:"GET"
+        })
+    .then(response =>  response.json());
