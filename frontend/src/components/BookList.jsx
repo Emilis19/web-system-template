@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 //import PropTypes from 'prop-types';
 const style = {
     book: {
@@ -39,6 +40,7 @@ export default class BookList extends React.Component{
             books: [],
             state: 'favorites'
         }
+        this.onclick = this.onclick.bind(this);
     }
     
    /* getBooks = () => fetch('/api/books')
@@ -50,17 +52,34 @@ export default class BookList extends React.Component{
         })
         .then(results => results.json())
         .then(json => {
-            let {data} = json;
-            this.setState({ books : data })
+            this.setState({ books : json })
         })
         .catch(function(error) {console.log(error)});
     }
 
+    onclick(id){
+        fetch('/api/book/'+ id, {
+            method: 'DELETE',
+        })
+        .then(results => results.json())
+        .then(() => {
+            return fetch('/api/books', {
+                method: 'GET',
+            })
+            .then(results => results.json())
+            .then(json => {
+                this.setState({ books : json })
+            })
+            .catch(function(error) {console.log(error)});
+        })
+        .catch(function(error) {console.log(error)});
+    }
 
     render(){
         return (
             this.state.books.map((books) => {
                 let {title, imageLinks , infoLink} = books.volumeInfo
+                
                     return (
                         <div>
                         <a href ={infoLink}
@@ -73,7 +92,7 @@ export default class BookList extends React.Component{
                         />
                         <div style={style.titleText}>{title }</div>
                         </a>
-                        <div><Button variant="primary" value= "delete">Remove</Button></div>
+                        <div><Button variant="primary" value= "delete"onClick={() => {this.onclick(books.id)}}>Remove</Button></div>
                         </div>          
                     );
             })
@@ -81,30 +100,6 @@ export default class BookList extends React.Component{
         );
     }
 };
-           /* return (
-                <div>
-                    {
-                        this.state.books.map((eachBook) => {
-                            return (
-                                <div>
-                        <a href ={eachBook.volumeInfo.infoLink}
-                        target = "_blank"
-                        key={eachBook.id} style={style.book}>
-                        <img 
-                        src ={eachBook.volumeInfo.imageLinks !== undefined? eachBook.volumeInfo.imageLinks.thumbnail : ''} 
-                        alt = "book image"
-                        style={style.bookImage}
-                        />
-                        <div style={style.titleText}>{eachBook.volumeInfo.title }</div>                      
-                        </a>
-                        <div><Button variant="primary" value= "delete">Add to favorites</Button></div>
-                        </div>
-                            );
-                        })    
-                    }
-                </div>
-                
-            );
-        */
+
         
 

@@ -19,3 +19,10 @@ app.post("/api/book", (req, res) => {
 app.get("/api/books", (req, res) => {
     res.send(books);
 });
+app.delete("/api/book/:id", (req, res) => {
+  const bookID = req.params.id;
+  const index = books.findIndex(book => book.id === bookID);
+  const removedBook = books[index];
+  books.splice(index, 1);
+  res.send(removedBook);
+});
