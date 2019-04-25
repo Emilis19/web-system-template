@@ -21,3 +21,6 @@ export const searchBooks = (query) => fetch(BASE_URL + query,
             method:"GET"
         })
     .then(response =>  response.json());
+
+export const getFilteredBooks = (sort) => fetch(`/api/books/${sort}`)
+    .then(response => response.json());

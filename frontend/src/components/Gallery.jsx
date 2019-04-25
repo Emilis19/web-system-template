@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { insert } from '../models/bookModel';
+import { insert, getFilteredBooks } from '../models/bookModel';
 const style = {
     book: {
         display: 'inline-block',
@@ -32,7 +32,7 @@ const style = {
     
     }
 }
-const url = "/api/book"
+
 export default class Gallery extends React.Component{
     constructor(props){
         super(props);
@@ -43,6 +43,8 @@ export default class Gallery extends React.Component{
     .then(function(responseValue){
         console.log(responseValue)
     })}
+
+
     render(){
         return (
             <div>
@@ -50,10 +52,10 @@ export default class Gallery extends React.Component{
                 this.props.items.map((item) => {
                     let {title, imageLinks , infoLink} = item.volumeInfo
                     return (
-                        <div>
+                        <div key={item.id}>
                         <a href ={infoLink}
                         target = "_blank"
-                        key={item.id} style={style.book}>
+                        style={style.book}>
                         <img 
                         src ={imageLinks !== undefined? imageLinks.thumbnail : ''} 
                         alt = "book image"

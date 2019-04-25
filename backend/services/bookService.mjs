@@ -26,3 +26,6 @@ app.delete("/api/book/:id", (req, res) => {
   books.splice(index, 1);
   res.send(removedBook);
 });
+app.get("/api/books/:sort", (req, res) => {
+    // filter by title
+});

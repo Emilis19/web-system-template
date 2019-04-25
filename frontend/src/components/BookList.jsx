@@ -63,16 +63,24 @@ export default class BookList extends React.Component{
         .catch(function(error) {console.log(error)});
     }
 
+
+    onFilterBooks(sort){
+        getFilteredBooks(sort)
+          // method here
+    }
+    
     render(){
         return (
+            <div>
+            {
             this.state.books.map((books) => {
                 let {title, imageLinks , infoLink} = books.volumeInfo
                 
                     return (
-                        <div>
+                        <div key={books.id}>
                         <a href ={infoLink}
                         target = "_blank"
-                        key={books.id} style={style.book}>
+                        style={style.book}>
                         <img 
                         src ={imageLinks !== undefined? imageLinks.thumbnail : ''} 
                         alt = "book image"
@@ -83,11 +91,12 @@ export default class BookList extends React.Component{
                         <div><Button variant="primary" value= "delete"onClick={() => {this.onclick(books.id)}}>Remove</Button></div>
                         </div>          
                     );
-            })
-        
+                })
+                }</div>
+
         );
     }
-};
+}
 
         
 
