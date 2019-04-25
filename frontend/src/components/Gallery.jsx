@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import { insert } from '../models/bookModel';
 const style = {
     book: {
         display: 'inline-block',
@@ -38,18 +39,7 @@ export default class Gallery extends React.Component{
         this.click.bind(this);
     }
     click(item){
-
-        fetch(url, {method: "POST",
-                    body: JSON.stringify(item),
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
-                }
-        )
-        .then(function (response) {
-            console.log(response.status);
-            return response.json();  
-        } )
+        insert(item)
     .then(function(responseValue){
         console.log(responseValue)
     })}
