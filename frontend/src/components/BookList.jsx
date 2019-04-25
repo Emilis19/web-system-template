@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import {getBooks, deleteBook} from '../models/bookModel';
+import {getBooks, deleteBook, getFilteredBooks} from '../models/bookModel';
 //import PropTypes from 'prop-types';
 const style = {
     book: {
@@ -39,7 +39,8 @@ export default class BookList extends React.Component{
         super(props);
         this.state = {
             books: [],
-            state: 'favorites'
+            state: 'favorites',
+            sort: 'descending'
         }
         this.onclick = this.onclick.bind(this);
     }
@@ -64,13 +65,25 @@ export default class BookList extends React.Component{
     }
 
 
-    onFilterBooks(sort){
-        getFilteredBooks(sort)
-          // method here
+
+    onFilterBooks(){    
+        if (this.state.sort == "ascending"){
+            this.state.sort = "descending"
+        }
+        else{       
+            this.state.sort = "ascending"
+        }
+      //  console.log(getFilteredBooks(this.state.sort));
+        getFilteredBooks(this.state.sort)
+        .then(filteredBooks => {
+        this.setState({ books : filteredBooks })
+        })
     }
     
     render(){
         return (
+            <div>
+            <div><Button variant="primary" value= "sort"onClick={() => {this.onFilterBooks()}}>Sort</Button></div>
             <div>
             {
             this.state.books.map((books) => {
@@ -93,6 +106,7 @@ export default class BookList extends React.Component{
                     );
                 })
                 }</div>
+                </div>
 
         );
     }

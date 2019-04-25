@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { insert, getFilteredBooks } from '../models/bookModel';
+import { insert, getFilteredBooks, getBooks } from '../models/bookModel';
 const style = {
     book: {
         display: 'inline-block',

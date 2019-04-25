@@ -9,13 +9,24 @@ app.get("/api/test", (request, response) => {
     response.status(200).send("test");
 });
 app.post("/api/book", (req, res) => {
-    console.log("i post")
-    console.log(req)
+    let exists = false
+    books.forEach(books => {
+        if(books.id === req.body.id)
+        {
+            exists = true;
+            return;
+        }
+    })
+    if (exists){
+        res.status(200).send(books)
+    }
+    else{
     books.push(req.body)
-    console.log(books)
     res.setHeader("Content-Type", 'application/json')
     res.status(200).send(JSON.stringify(books))
-})
+    }
+    })
+
 app.get("/api/books", (req, res) => {
     res.send(books);
 });
@@ -27,5 +38,10 @@ app.delete("/api/book/:id", (req, res) => {
   res.send(removedBook);
 });
 app.get("/api/books/:sort", (req, res) => {
-    // filter by title
+    if (req.params.sort == "ascending") {
+    res.send(JSON.stringify(books.sort((a, b) => (a.volumeInfo.title < b.volumeInfo.title) ? 1 : -1)));
+    }
+    else{
+    res.send(JSON.stringify(books.sort((a, b) => (a.volumeInfo.title > b.volumeInfo.title) ? 1 : -1)));
+    }
 });
