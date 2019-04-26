@@ -9,22 +9,34 @@ app.get("/api/test", (request, response) => {
     response.status(200).send("test");
 });
 app.post("/api/book", (req, res) => {
-    let exists = false
-    books.forEach(books => {
-        if(books.id === req.body.id)
-        {
-            exists = true;
-            return;
+    
+    if(req.body.id !== null && req.body.id.length < 200 && 
+       req.body.volumeInfo.title !== null && req.body.volumeInfo.title.length < 200 &&
+       req.body.volumeInfo.imageLinks !== null && req.body.volumeInfo.imageLinks.thumbnail.length < 200 &&
+       req.body.volumeInfo.infoLink !== null && req.body.volumeInfo.infoLink.length < 200 &&
+       req.body.volumeInfo.publisher !== null && req.body.volumeInfo.publisher.length < 200 &&
+       req.body.volumeInfo.publishedDate !== null && req.body.volumeInfo.publishedDate.length < 20
+       ){
+        let exists = false
+        books.forEach(books => {
+            if(books.id === req.body.id)
+            {
+                exists = true;
+                return;
+            }
+        })
+        if (exists){
+            res.status(200).send(books)
         }
-    })
-    if (exists){
-        res.status(200).send(books)
-    }
-    else{
-    books.push(req.body)
-    res.setHeader("Content-Type", 'application/json')
-    res.status(200).send(JSON.stringify(books))
-    }
+        else{
+        books.push(req.body)
+        res.status(200).send(JSON.stringify(books))
+        }
+       }
+       else{
+        res.status(400).send([{message: "invalid post input"}])
+       }
+       
     })
 
 app.get("/api/books", (req, res) => {
@@ -39,9 +51,9 @@ app.delete("/api/book/:id", (req, res) => {
 });
 app.get("/api/books/:sort", (req, res) => {
     if (req.params.sort == "ascending") {
-    res.send(JSON.stringify(books.sort((a, b) => (a.volumeInfo.title < b.volumeInfo.title) ? 1 : -1)));
+    res.send(books.sort((a, b) => (a.volumeInfo.title < b.volumeInfo.title) ? 1 : -1));
     }
     else{
-    res.send(JSON.stringify(books.sort((a, b) => (a.volumeInfo.title > b.volumeInfo.title) ? 1 : -1)));
+    res.send(books.sort((a, b) => (a.volumeInfo.title > b.volumeInfo.title) ? 1 : -1));
     }
 });

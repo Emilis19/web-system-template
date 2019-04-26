@@ -62,7 +62,6 @@ export default class Gallery extends React.Component{
                         style={style.bookImage}
                         />
                         <div style={style.titleText}>{title }</div>
-                        
                         </a>
                         <div><Button variant="primary" value= "add" onClick={() => {this.click(item)}}>Add to favorites</Button></div>
                         </div>
