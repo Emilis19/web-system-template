@@ -82,13 +82,12 @@ export default class BookList extends React.Component{
     
     render(){
         return (
-            <div>
+            <div className="text-center">
             <div><Button variant="primary" value= "sort"onClick={() => {this.onFilterBooks()}}>Sort</Button></div>
             <div>
             {
             this.state.books.map((books) => {
                 let {title, imageLinks , infoLink} = books.volumeInfo
-                
                     return (
                         <div key={books.id}>
                         <a href ={infoLink}
