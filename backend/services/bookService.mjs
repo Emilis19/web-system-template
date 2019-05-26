@@ -10,13 +10,7 @@ app.get("/api/test", (request, response) => {
 });
 app.post("/api/book", (req, res) => {
     
-    if(req.body.id !== null && req.body.id.length < 200 && 
-       req.body.volumeInfo.title !== null && req.body.volumeInfo.title.length < 200 &&
-       req.body.volumeInfo.imageLinks !== null && req.body.volumeInfo.imageLinks.thumbnail.length < 200 &&
-       req.body.volumeInfo.infoLink !== null && req.body.volumeInfo.infoLink.length < 200 &&
-       req.body.volumeInfo.publisher !== null && req.body.volumeInfo.publisher.length < 200 &&
-       req.body.volumeInfo.publishedDate !== null && req.body.volumeInfo.publishedDate.length < 20
-       ){
+    if(req.body.id !== null){
         let exists = false
         books.forEach(books => {
             if(books.id === req.body.id)

@@ -51,7 +51,6 @@ export default class SearchList extends React.Component {
       })
 
     })
-    console.log("veikia mygtukas" , this.state.query);
   }
   }
   handleChange(event){
